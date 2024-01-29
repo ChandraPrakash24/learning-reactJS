@@ -9,49 +9,77 @@
   <body>
     <!-- Here we are looking at that react can be added to existing project (here in root let say in real world seneario we want to use react only for search bar then by defining searct bar as 'root') we can use react for there only -->
     <div id="header"><h1>Header</h1></div>
-    <div id="root"></div>
+    <div id="root">Not Rendered</div>
     <div id="footer"><h1>Footer</h1></div>
+
+    <!-- core React cdn link-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- core ReactDOM (for web; may be you can use native here as well) cdn link-->
+    <script>
+      // the same thing can be done using 1st using html, 2nd using JS (dom)
+      // this is the 3rd way using React (geting from cdn)
+      // SYNTEX: createElement(type, props, ...children)
+      const heading = React.createElement(
+        "h1",
+        {
+          id: "title",
+          className: "heading"
+        },
+        "jai shree ram"
+      ); // react always creates 'elements' not 'tag'
+
+      console.log(heading); // typeof: object
+      // out:
+      //   {
+      //     "type": "h1",
+      //     "key": null,
+      //     "ref": null,
+      //     "props": {
+      //         "children": "jai shree ram"
+      //     },
+      //     "_owner": null,
+      //     "_store": {}
+      //   }
+
+      // defining 'root' (where to load or put all the react elements using ReactDOM)
+      // only one root and only one render method most of the time no matter how the big app is or complex
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      // parsing the react element inside the root in a actual browser DOM (html,body)
+      root.render(heading);
+
+      // Wait for the rendering process to complete
+      // ReactDOM.unstable_flushAll();
+
+      // once it loaded or renderd to dom you can use normal js to above h1
+      // ex:(not like this exactly) const renderedHeading = document.querySelector("h1");
+      // renderedHeading.innerHTML = 'Hello World';
+    </script>
   </body>
-  <!-- core React cdn link-->
-  <script
-    crossorigin
-    src="https://unpkg.com/react@18/umd/react.development.js"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-  ></script>
-  <!-- core ReactDOM (for web; may be you can use native here as well) cdn link-->
-  <script>
-    // the same thing can be done using 1st using html, 2nd using JS (dom)
-    // this is the 3rd way using React (geting from cdn)
-    const heading = React.createElement("h1", {}, "jai shree ram"); // react always creates 'elements' not 'tag'
-
-    console.log(heading); // typeof: object
-    // out:
-    //   {
-    //     "type": "h1",
-    //     "key": null,
-    //     "ref": null,
-    //     "props": {
-    //         "children": "jai shree ram"
-    //     },
-    //     "_owner": null,
-    //     "_store": {}
-    //   }
-
-    // defining 'root' (where to load or put all the react elements using ReactDOM)
-    // only one root and only one render method most of the time no matter how the big app is or complex
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-
-    // parsing the react element inside the root in a actual browser DOM (html,body)
-    root.render(heading);
-
-    // Wait for the rendering process to complete
-    // ReactDOM.unstable_flushAll();
-
-    // once it loaded or renderd to dom you can use normal js to above h1
-    // ex:(not like this exactly) const renderedHeading = document.querySelector("h1");
-        // renderedHeading.innerHTML = 'Hello World';
-  </script>
 </html>
+
+<!-- Learning: -->
+<!-- any thing that is written already inside root get replaced when root.render() method is call 
+ex :
+<div id="root">
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+    <h1>Hello World</h1>
+</div>
+ -->
+
+<!-- if you see any thing that is above in the ex get loaded for just of milli second beacouse React takes time to load that all cdn js thats why -->
+
+<!-- this is a trick that people use to know that if any thing goes wromg Not Rendered get display on the page like if you not correctly tap into root while defining it
+ ex: <div id="root">Not Rendered</div>
+ ex:- here:-  const root = ReactDOM.createRoot(document.getElementById("roo")); // taping roo inseted of root -->
