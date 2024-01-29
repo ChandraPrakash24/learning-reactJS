@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- core React cdn link-->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <!-- core ReactDOM (for web; may be you can use native here as well) cdn link-->
+  <script>
+    // the same thing can be done using 1st using html, 2nd using JS (dom)
+    // this is the 3rd way using React (geting from cdn)
+    const heading = React.createElement("h1", {}, "jai shree ram"); // react always creates 'elements' not 'tag'
+
+    console.log(heading); // typeof: object
+    // out:
+    //   {
+    //     "type": "h1",
+    //     "key": null,
+    //     "ref": null,
+    //     "props": {
+    //         "children": "jai shree ram"
+    //     },
+    //     "_owner": null,
+    //     "_store": {}
+    //   }
+
+    // defining 'root' (where to load or put all the react elements using ReactDOM)
+    // only one root and only one render method most of the time no matter how the big app is or complex
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    // parsing the react element inside the root in a actual browser DOM (html,body)
+    root.render(heading);
+
+    // Wait for the rendering process to complete
+    // ReactDOM.unstable_flushAll();
+
+    // once it loaded or renderd to dom you can use normal js to above h1
+    // ex:(not like this exactly) const renderedHeading = document.querySelector("h1");
+        // renderedHeading.innerHTML = 'Hello World';
+  </script>
+</html>
