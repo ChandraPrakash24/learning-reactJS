@@ -22,8 +22,8 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
     <!-- core ReactDOM (for web; may be you can use native here as well) cdn link-->
-    <script>
-      // the same thing can be done using 1st using html, 2nd using JS (dom)
+    <!-- <script>
+      // the same thing can be done using 1st using html, 2nd using JS (dom) 
       // this is the 3rd way using React (geting from cdn)
       // SYNTEX: createElement(type, props, ...children)
       const heading = React.createElement(
@@ -61,6 +61,35 @@
       // once it loaded or renderd to dom you can use normal js to above h1
       // ex:(not like this exactly) const renderedHeading = document.querySelector("h1");
       // renderedHeading.innerHTML = 'Hello World';
+    </script> -->
+    <script>
+      // ASSIGNMENT:
+      // create structure like this:
+      /* <div id="container">
+            <h1 id="heading1">Heading 1</h1>
+            <h2 id="heading2">Heading 2</h2>
+        </div>        */
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      const heading1 = React.createElement(
+        "h1",
+        { id: "heading1" },
+        "Hello from Heading 1"
+      );
+      const heading2 = React.createElement(
+        "h2",
+        { id: "heading2" },
+        "Hello from Heading 2"
+      );
+
+      const container = React.createElement(
+        "div",
+        { id: "container", style: { color: "red", backgroundColor: "blue" } },
+        [heading1, heading2]
+      );
+
+      root.render(container);
     </script>
   </body>
 </html>
@@ -83,3 +112,15 @@ ex :
 <!-- this is a trick that people use to know that if any thing goes wromg Not Rendered get display on the page like if you not correctly tap into root while defining it
  ex: <div id="root">Not Rendered</div>
  ex:- here:-  const root = ReactDOM.createRoot(document.getElementById("roo")); // taping roo inseted of root -->
+
+<!-- React basicaly come with the idea of that writing all the html and css (not every time) inside a JavaScript file thats why we are are writing all code inside script tag;
+but waht if we have to write very comple app we can not do all the time like this:
+const heading = React.createElement(
+    "h1",
+    {
+      id: "title",
+      className: "heading"
+    },
+    "jai shree ram"
+  );
+thats why JSX comes into play -->
