@@ -39,12 +39,15 @@ body{
 
 .card-container{
   width: 200px;
+  /* height: 300px;
+  overflow-y: hidden; */
   border: 2px solid hsl(0, 5%, 78%);
   padding: 10px;
   margin: 10px;
   display: inline-block;
 }
 .card-container > img{
+  /* height: 200px; */
   color: white;
   width: 100%;
 }

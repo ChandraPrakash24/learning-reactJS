@@ -1136,15 +1136,15 @@ const RestaurantList = [
 
 
 // restrorent cards
-const RestrountComponent = (props) => {
-  console.log(props);
+const RestrountComponent = ({ restauro }) => {
+  // console.log(props);
   return(
     <div className="card-container">
-      <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + props.restauro.info?.cloudinaryImageId} alt="food-pic" />
-      <h4 >{props.restauro.info?.name}</h4>
-      <h5>{props.restauro.info?.cuisines.join(", ")}</h5>
-      <h6>{props.restauro.info?.avgRating} Stars</h6>
-      <h6>{props.restauro.info.sla?.lastMileTravelString} minutes</h6>
+      <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + restauro.info?.cloudinaryImageId} alt="food-pic" />
+      <h4 >{restauro.info?.name}</h4>
+      <h5>{restauro.info?.cuisines.join(", ")}</h5>
+      <h6>{restauro.info?.avgRating} Stars</h6>
+      <h6>{restauro.info.sla?.lastMileTravelString} minutes</h6>
     </div>
   );
 };
@@ -1158,11 +1158,6 @@ const BodyComponent = () => {
       <RestrountComponent restauro={RestaurantList[3]} />
       <RestrountComponent restauro={RestaurantList[4]} />
       <RestrountComponent restauro={RestaurantList[5]} />
-      {/* <RestrountComponent restrount={RestaurantList[1] />
-      // <RestrountComponent Restrount={RestaurantList[2] />
-      // <RestrountComponent Restrount={RestaurantList[3] />
-      // <RestrountComponent Restrount={RestaurantList[4] />
-      // <RestrountComponent Restrount={RestaurantList[5] /> */}
     </div>
   );
 };
