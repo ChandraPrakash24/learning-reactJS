@@ -14,7 +14,7 @@ const HeaderComponent = () => {
             <li>Home</li>
             <li>About</li>
             <li>Contact</li>
-            <li><i class="fa-solid fa-cart-shopping"></i></li>
+            <li><i className="fa-solid fa-cart-shopping"></i></li>
         </ul>
       </div>
     </div>
@@ -1136,35 +1136,52 @@ const RestaurantList = [
 
 
 // restrorent cards
-const RestrountComponent = ({ restauro }) => {
+// const RestrountComponent = (props) => {
+const RestrountComponent = ({ cloudinaryImageId, name, cuisines, avgRating, sla }) => {
+  // const lastMileTravelString = sla.lastMileTravelString;
   // console.log(props);
+  // console.log(props.name);
+  // console.log(props.availability.nextCloseTime);
+  // console.log(props.sla.lastMileTravelString);
+  // const {  } =  restauro.info;
+  // const { lastMileTravelStringg } = lastMileTravelString.sla;
   return(
     <div className="card-container">
-      <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + restauro.info?.cloudinaryImageId} alt="food-pic" />
-      <h4 >{restauro.info?.name}</h4>
-      <h5>{restauro.info?.cuisines.join(", ")}</h5>
-      <h6>{restauro.info?.avgRating} Stars</h6>
-      <h6>{restauro.info.sla?.lastMileTravelString} minutes</h6>
+      <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} alt="food-pic" />
+      <h4 >{name}</h4>
+      <h5>{cuisines.join(", ")}</h5>
+      <h6>{avgRating} Stars</h6>
+      <h6>{sla.lastMileTravelString ?? "1.1 km"} minutes</h6>
     </div>
   );
 };
 
 const BodyComponent = () => {
   return(
-    <div>
-      <RestrountComponent restauro={RestaurantList[0]} />
-      <RestrountComponent restauro={RestaurantList[1]} />
-      <RestrountComponent restauro={RestaurantList[2]} />
-      <RestrountComponent restauro={RestaurantList[3]} />
-      <RestrountComponent restauro={RestaurantList[4]} />
-      <RestrountComponent restauro={RestaurantList[5]} />
+    <div className="resto-list">
+
+    {
+      RestaurantList.map(
+        restaurantListObj => <RestrountComponent {...restaurantListObj.info} key={restaurantListObj.info.id}/>
+        )
+    }
+
+    {/* <RestrountComponent {...RestaurantList[0].info} lastMileTravelStringg={RestaurantList[0].info.sla.lastMileTravelString} /> */}
+      {/* <RestrountComponent {...RestaurantList[0].info} />
+      <RestrountComponent {...RestaurantList[1].info} />
+      <RestrountComponent {...RestaurantList[2].info} />
+      <RestrountComponent {...RestaurantList[3].info} />
+      <RestrountComponent {...RestaurantList[4].info} />
+      <RestrountComponent {...RestaurantList[5].info} /> */}
     </div>
   );
 };
 const FooterComponent = () => {
-  return(<div>
-    
-  </div>);
+  return (
+    <div className="footer-container">
+      <p>&copy; Created By Chandra Prakash  {new Date().getFullYear()} Food<span>Fire</span></p>
+    </div>
+  );
 };
 
 
