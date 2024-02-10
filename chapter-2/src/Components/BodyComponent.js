@@ -21,9 +21,20 @@ const BodyComponent = () => {
         />
         <button type="button" className="search-btn" onClick={() => {
           // filter data
-          const data = filterData(searchText, restaurents);
+          if(searchText.includes(' ') || searchText.trim().length === 0){
+
+          } else{
+            const data = filterData(searchText, restaurents);
+            setRestaurents(data);
+            // const [restaurents, setRestaurents] = useState(RestaurantList);
+
+          }
           // seta restauro data
-          setRestaurents(data);
+          // setTimeout(()=>{
+          // if(data.length !== RestaurantList.length){
+          // setRestaurents(RestaurantList);
+          // }
+          // },2000);
         }} >Search</button>
       </div>
       <div className="resto-list">
