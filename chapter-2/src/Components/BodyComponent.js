@@ -1,12 +1,34 @@
+import { useState } from "react"; 
 import RestrountComponent from "./RestrountComponent";
 import {RestaurantList} from "../constaints";
 
+function filterData(searchText, wholeRestaurentList){
+ const filterData = wholeRestaurentList.filter((restauro) => restauro.info.name.includes(searchText));
+ return filterData;
+}
+
+
 const BodyComponent = () => {
-    return(
-      <div className="resto-list">
   
+  const [restaurents, setRestaurents] = useState(RestaurantList);
+  const [searchText, setSearchText] = useState("");
+
+    return(
+      <>
+      <div className="search-container">
+        <input type="text" className="search-input" placeholder="Search" value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button type="button" className="search-btn" onClick={() => {
+          // filter data
+          const data = filterData(searchText, restaurents);
+          // seta restauro data
+          setRestaurents(data);
+        }} >Search</button>
+      </div>
+      <div className="resto-list">
       {
-        RestaurantList.map(
+        restaurents.map(
           restaurantListObj => <RestrountComponent {...restaurantListObj.info} key={restaurantListObj.info.id}/>
           )
       }
@@ -19,6 +41,7 @@ const BodyComponent = () => {
         <RestrountComponent {...RestaurantList[4].info} />
         <RestrountComponent {...RestaurantList[5].info} /> */}
       </div>
+      </>
     );
   };
 
