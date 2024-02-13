@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useEffect, useState } from "react"; 
 import RestrountComponent from "./RestrountComponent";
 import {RestaurantList} from "../constaints";
 
@@ -12,6 +12,19 @@ const BodyComponent = () => {
   
   const [restaurents, setRestaurents] = useState(RestaurantList);
   const [searchText, setSearchText] = useState("");
+
+  useEffect(()=>{
+    getData();
+  },[])
+
+  async function getData() {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.71700&lng=75.83370&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const jsonData = await data.json();
+    // console.log(jsonData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+    setRestaurents(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  }
+
+  console.log("rerenderd()");
 
     return(
       <>
