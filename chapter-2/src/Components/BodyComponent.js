@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"; 
 import RestrountComponent from "./RestrountComponent";
-import {RestaurantList} from "../constaints";
+// import {RestaurantList} from "../constaints";
+import Shimmer from "./ShimmerUI";
 
 function filterData(searchText, wholeRestaurentList){
  const filterData = wholeRestaurentList.filter((restauro) => restauro.info.name.includes(searchText));
@@ -10,7 +11,7 @@ function filterData(searchText, wholeRestaurentList){
 
 const BodyComponent = () => {
   
-  const [restaurents, setRestaurents] = useState(RestaurantList);
+  const [restaurents, setRestaurents] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(()=>{
@@ -26,7 +27,7 @@ const BodyComponent = () => {
 
   console.log("rerenderd()");
 
-    return(
+    return (restaurents.length === 0) ? <Shimmer/> : (
       <>
       <div className="search-container">
         <input type="text" className="search-input" placeholder="Search" value={searchText}
