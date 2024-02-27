@@ -4,10 +4,9 @@ import RestrountComponent from "./RestrountComponent";
 import Shimmer from "./ShimmerUI";
 
 function filterData(searchText, wholeRestaurentList){
- const filterData = wholeRestaurentList.filter((restauro) => restauro.info.name.includes(searchText));
+ const filterData = wholeRestaurentList.filter((restauro) => restauro?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase()));
  return filterData;
 }
-
 
 const BodyComponent = () => {
   
@@ -26,6 +25,11 @@ const BodyComponent = () => {
   }
 
   console.log("rerenderd()");
+
+  // early return
+  if(!restaurents) return null;
+
+  if(restaurents?.length === 0) return <h1>No Restaurent Match Your Filter</h1>
 
     return (restaurents.length === 0) ? <Shimmer/> : (
       <>
