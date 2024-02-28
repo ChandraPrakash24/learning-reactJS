@@ -2,6 +2,7 @@
 // import FoodFireLogo from "../chapter-2/Images/Food Fire Logo.png"
 import { useState } from "react";
 import FoodFireLogo from "../../Images/Food Fire Logo.png"
+import { Link } from "react-router-dom";
 
 const loggedIn = () => {
   // make api cal here for auth and get succes or failurse response
@@ -21,8 +22,9 @@ const HeaderComponent = () => {
         </a>
         <div className="nav-item">
           <ul>
-              <li>Home</li>
-              <li>About</li>
+              <li><Link to="/">Home</Link></li>
+              <Link to="/about"> <li>About</li> </Link>
+              {/* <li><Link to="/about">About</Link></li> */}
               <li>Contact</li>
               <li><i className="fa-solid fa-cart-shopping"></i></li>
               {
@@ -40,3 +42,12 @@ const HeaderComponent = () => {
   // Q JSX currley braces
   // Q Diff algo is written on react core liberary and dom update is happen via react-dom
   // Q React recounsiletion work same to same in react native
+  // Q Never create component inside component
+  // Q Never write useState inside if else and for loop
+  // Q Never create or use useState outside your functional component
+  // Q CDN assets vs local assets
+  // Q Formik forms
+  // Q what is the problem with anchor tag (it reffereshes whole page)
+  // Q what is SPA (single page application) (does not make network call on different page jump and do not reffereshes the whole page)
+  // Q what are two types of routing (client side (react-router-dom) and server side (file based in next js))
+  // Q 
