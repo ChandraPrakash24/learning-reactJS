@@ -13,8 +13,6 @@ const loggedIn = () => {
 const HeaderComponent = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
     return(
       <div className="header-container" >
         <a href="/">
@@ -25,7 +23,7 @@ const HeaderComponent = () => {
               <li><Link to="/">Home</Link></li>
               <Link to="/about"> <li>About</li> </Link>
               {/* <li><Link to="/about">About</Link></li> */}
-              <li>Contact</li>
+              <Link to="/contact"> <li>Contact</li> </Link>
               <li><i className="fa-solid fa-cart-shopping"></i></li>
               {
                 isLoggedIn ? <button onClick={()=> setIsLoggedIn(false)}>Logout</button> : <button onClick={()=> setIsLoggedIn(true)} >Login</button>
