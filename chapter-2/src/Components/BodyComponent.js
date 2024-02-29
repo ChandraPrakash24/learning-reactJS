@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; 
 import RestrountComponent from "./RestrountComponent";
 // import {RestaurantList} from "../constaints";
-import Shimmer from "./ShimmerUI";
+import MultipleShimmers from "./MultipleShimmer";
 import { Link } from "react-router-dom";
 
 function filterData(searchText, wholeRestaurentList){
@@ -27,12 +27,13 @@ const BodyComponent = () => {
 
   console.log("rerenderd()");
 
-  // early return
-  if(!restaurents) return null;
+  // // early return
+  // if(!restaurents) return null;
 
-  if(restaurents?.length === 0) return <h1>No Restaurent Match Your Filter</h1>
+  // if(restaurents?.length === 0) return <h1>No Restaurent Match Your Filter</h1>
 
-    return (restaurents.length === 0) ? <Shimmer/> : (
+    // return (restaurents.length === 0) ? <Shimmer/> : (
+    return (restaurents.length === 0) ? <MultipleShimmers/> : (
       <>
       <div className="search-container">
         <input type="text" className="search-input" placeholder="Search" value={searchText}

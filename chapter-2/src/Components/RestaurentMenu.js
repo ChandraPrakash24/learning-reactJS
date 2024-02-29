@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../constaints";
-import ShimmerUI from "./ShimmerUI";
+import MultipleShimmer from "./MultipleShimmer";
 
 const RestaurentMenu = () => {
     const param = useParams();
@@ -40,7 +40,7 @@ const RestaurentMenu = () => {
     // console.log(RestaurentMenuInfoData.data.cards[0].card.card.info.name);
     
     return !RestaurentMenuInfoData ? (
-      <ShimmerUI />
+      <MultipleShimmer />
     ) : (
       <div>
         <div>

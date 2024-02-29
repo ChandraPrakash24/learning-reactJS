@@ -50,3 +50,5 @@ const HeaderComponent = () => {
   // Q what are two types of routing (client side (react-router-dom) and server side (file based in next js))
   // Q Diffrent between avgRating (int) vs avgRatingString (string)
   // Q what is Object.value() in JS
+  // Q By default assets are default export?
+  // Q Component benifets (moduler, readable, maintanable, testable, reusable) 
