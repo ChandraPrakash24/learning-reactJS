@@ -48,4 +48,5 @@ const HeaderComponent = () => {
   // Q what is the problem with anchor tag (it reffereshes whole page)
   // Q what is SPA (single page application) (does not make network call on different page jump and do not reffereshes the whole page)
   // Q what are two types of routing (client side (react-router-dom) and server side (file based in next js))
-  // Q 
+  // Q Diffrent between avgRating (int) vs avgRatingString (string)
+  // Q what is Object.value() in JS

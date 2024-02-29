@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { IMG_CDN_URL } from "../constaints";
+import ShimmerUI from "./ShimmerUI";
 
 const RestaurentMenu = () => {
     const param = useParams();
@@ -13,7 +15,7 @@ const RestaurentMenu = () => {
     },[]);
     
     async function getRestaurentInfo() {
-        const RestaurentInfoData = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.71700&lng=75.83370&restaurantId=84070&catalog_qa=undefined&submitAction=ENTER");
+        const RestaurentInfoData = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.71700&lng=75.83370&restaurantId=" + id + "&catalog_qa=undefined&submitAction=ENTER");
     
         const parsedRestaurentInfoData = await RestaurentInfoData.json();
         // console.log(parsedRestaurentInfoData.data);
@@ -37,19 +39,110 @@ const RestaurentMenu = () => {
 
     // console.log(RestaurentMenuInfoData.data.cards[0].card.card.info.name);
     
-    return (
+    return !RestaurentMenuInfoData ? (
+      <ShimmerUI />
+    ) : (
+      <div>
         <div>
-        <h1>Restro Menue</h1>
-        <h1>Restro id : {id}</h1>
-        {/* <h1>{RestaurentMenuInfoData.data.cards[0].card.card.info.name}</h1> */}
-        {RestaurentMenuInfoData && RestaurentMenuInfoData.data && RestaurentMenuInfoData.data.cards && RestaurentMenuInfoData.data.cards.length > 0 && (
-                <h1>{RestaurentMenuInfoData.data.cards[0].card.card.info.name}</h1>
+          <h1>Restro Menue</h1>
+          <h1>Restro id : {id}</h1>
+          {/* <h1>{RestaurentMenuInfoData.data.cards[0].card.card.info.name}</h1> */}
+          {/* {RestaurentMenuInfoData && RestaurentMenuInfoData.data && RestaurentMenuInfoData.data.cards && RestaurentMenuInfoData.data.cards.length > 0 && (
+                                <h1>{RestaurentMenuInfoData.data.cards[0].card.card.info.name}</h1>
+                        )} */}
+          {/*      OR             */}
+          {/* {console.log(RestaurentMenuInfoData.data.cards[0].card.card.info.name)} */}
+          <h1>
+            {RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info?.name}
+          </h1>
+          <h1>
+            {RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info?.id}
+          </h1>
+          <h1>
+            {RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info?.city}
+          </h1>
+          <h1>
+            {
+              RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info
+                ?.avgRating
+            }
+          </h1>
+          <img
+            height={200}
+            width={200}
+            src={
+              IMG_CDN_URL +
+              RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info
+                ?.cloudinaryImageId
+            }
+          />
+          {/* <h1>{RestaurentMenuInfoData}</h1> */}
+          {/* <h1>Restro id : {param.id}</h1>  // not destructure of param
+                        <h1>Restrounnt {param.id}</h1> */}
+
+          {/* {RestaurentMenuInfoData?.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards[0].card.info.name} */}
+        </div>
+
+        <div>
+          <h2>Menu</h2>
+          <ul>
+            {/* {console.log(
+              RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap
+                ?.REGULAR?.cards[1]?.card?.card?.itemCards
             )}
-        {/* <h1>{RestaurentMenuInfoData}</h1> */}
-        {/* <h1>Restro id : {param.id}</h1>  // not destructure of param
-        <h1>Restrounnt {param.id}</h1> */}
-    </div>
-  );
+            {console.log(
+              RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap
+                ?.REGULAR?.cards[1]?.card?.card?.itemCards[0].card.info.name
+            )} */}
+            {/* {console.log([1].card.info.name)} */}
+
+            {/* {RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map(
+                (item) => (
+                    <li
+                    key={
+                        item.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1]
+                        .card.card.itemCards[0].card.info.id
+                    }
+                    >
+                    item.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards[0].card.info.name
+                    </li>
+                )
+                )} */}
+
+            {/* {RestaurentMenuInfoData &&
+              RestaurentMenuInfoData.data &&
+              RestaurentMenuInfoData.data.cards &&
+              RestaurentMenuInfoData.data.cards[2] &&
+              RestaurentMenuInfoData.data.cards[2].groupedCard.cardGroupMap
+                .REGULAR.cards[1] &&
+              RestaurentMenuInfoData.data.cards[2].groupedCard.cardGroupMap
+                .REGULAR.cards[1].card.card.itemCards &&
+              RestaurentMenuInfoData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards.map(
+                (item) => (
+                  <li
+                    key={
+                      item.data.cards[2].groupedCard.cardGroupMap.REGULAR
+                        .cards[1].card.card.itemCards[0].card.info.id
+                    }
+                  >
+                    {
+                      item.data.cards[2].groupedCard.cardGroupMap.REGULAR
+                        .cards[1].card.card.itemCards[0].card.info.name
+                    }
+                  </li>
+                )
+              )} */}
+
+            {RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map(
+              (item) => (
+                <li key={item.card.info.id}>{item.card.info.name}</li>
+              )
+            )}
+
+          </ul>
+        </div>
+      </div>
+    );
 };
 
 export default RestaurentMenu;
