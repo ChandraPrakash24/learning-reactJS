@@ -133,12 +133,29 @@ const RestaurentMenu = () => {
                 )
               )} */}
 
-            {RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map(
+            {RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.length > 0 ? (
+            // If REGULAR.cards[1] is not empty, render its itemCards
+            RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.map((item) => (
+                <li key={item.card.info.id}>{item.card.info.name}</li>
+            ))
+            ) : (
+            // If REGULAR.cards[1] is empty, render REGULAR.cards[2]'s itemCards
+            RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((item) => (
+                <li key={item.card.info.id}>{item.card.info.name}</li>
+            ))
+            )}
+ 
+
+            {/* {Object.values(RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards).map(
               (item) => (
                 <li key={item.card.info.id}>{item.card.info.name}</li>
               )
-            )}
-
+            )} */}
+            {/* {RestaurentMenuInfoData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.map(
+              (item) => (
+                <li key={item.card.info.id}>{item.card.info.name}</li>
+              )
+            )} */}
           </ul>
         </div>
       </div>

@@ -47,7 +47,3 @@ const appRouter = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(<RouterProvider router={appRouter} />);
-
-// https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.71700&lng=75.83370&restaurantId=67970&catalog_qa=undefined&submitAction=ENTER
-
-// https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.71700&lng=75.83370&restaurantId=84070&catalog_qa=undefined&submitAction=ENTER

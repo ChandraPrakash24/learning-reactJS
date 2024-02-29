@@ -172,7 +172,7 @@ body{
 
  /* SHIMMER UI */
 
-
+/*
  .shimmer-container {
   width: 100vw;
   height: 100vh;
@@ -190,6 +190,8 @@ body{
   overflow: hidden;
   animation: shimmer 2s infinite linear;
 }
+
+*/
 
 @keyframes shimmer {
   0% {

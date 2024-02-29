@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestrountComponent from "./RestrountComponent";
 // import {RestaurantList} from "../constaints";
 import Shimmer from "./ShimmerUI";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, wholeRestaurentList){
  const filterData = wholeRestaurentList.filter((restauro) => restauro?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase()));
@@ -56,11 +57,13 @@ const BodyComponent = () => {
         }} >Search</button>
       </div>
       <div className="resto-list">
-      {
-        restaurents.map(
-          restaurantListObj => <RestrountComponent {...restaurantListObj.info} key={restaurantListObj.info.id}/>
-          )
-      }
+        {
+          restaurents.map(restaurantListObj => (
+            <Link to={"/restaurent/" + restaurantListObj.info.id} key={restaurantListObj.info.id}>
+              <RestrountComponent {...restaurantListObj.info} />
+            </Link>
+          ))
+        }
   
       {/* <RestrountComponent {...RestaurantList[0].info} lastMileTravelStringg={RestaurantList[0].info.sla.lastMileTravelString} /> */}
         {/* <RestrountComponent {...RestaurantList[0].info} />
