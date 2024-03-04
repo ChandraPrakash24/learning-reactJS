@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./Components/HeaderComponent";
 import BodyComponent from "./Components/BodyComponent";
@@ -7,7 +7,9 @@ import About from "./Components/About";
 import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import RestaurentMenu from "./Components/RestaurentMenu";
+import Profile from "./Components/Profile";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 
 const AppLayout = () => {
   return(
@@ -32,7 +34,13 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />
+        element: <About />,
+        children:[
+          {
+            path: "profile",
+            element: <Profile />
+          }
+        ]
       },
       {
         path: "/contact",
