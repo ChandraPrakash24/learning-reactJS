@@ -10,15 +10,18 @@ class ProfileClass extends React.Component {
             count: 0,
             countTwo: 2,
         };
+        console.log('Child - Constructor');
     };
-
-
+    
+    
     componentDidMount() {
         // best place for api call
+        console.log('Child - Mount');
     }
-
+    
     // render() { return (<>jsx</>) } it is only compolosury method other then from import
     render() {
+        console.log('Child - Render');
         // const {count} = this.state;
         return (
         <div>
