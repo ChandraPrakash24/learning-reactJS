@@ -3,11 +3,7 @@ import RestrountComponent from "./RestrountComponent";
 // import {RestaurantList} from "../constaints";
 import MultipleShimmers from "./MultipleShimmer";
 import { Link } from "react-router-dom";
-
-function filterData(searchText, wholeRestaurentList){
- const filterData = wholeRestaurentList.filter((restauro) => restauro?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase()));
- return filterData;
-}
+import { filterData } from "../../utils/helper";
 
 const BodyComponent = () => {
   
