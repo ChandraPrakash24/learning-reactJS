@@ -22,6 +22,7 @@ const HeaderComponent = () => {
           <ul>
               <li><Link to="/">Home</Link></li>
               <Link to="/about"> <li>About</li> </Link>
+              <Link to="/instamart"> <li>Instamart</li> </Link>
               {/* <li><Link to="/about">About</Link></li> */}
               <Link to="/contact"> <li>Contact</li> </Link>
               <li><i className="fa-solid fa-cart-shopping"></i></li>
