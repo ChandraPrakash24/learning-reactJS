@@ -4,6 +4,7 @@ import RestrountComponent from "./RestrountComponent";
 import MultipleShimmers from "./MultipleShimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../../utils/helper";
+import useOnline from "../../utils/useOnline";
 
 const BodyComponent = () => {
   
@@ -21,7 +22,16 @@ const BodyComponent = () => {
     setRestaurents(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
-  console.log("rerenderd()");
+  // console.log("rerenderd()");
+
+  // is online custome hook
+  const isOffline = useOnline();
+
+  if(!isOffline){
+    return <h1>Offline</h1>;
+  }
+
+
 
   // // early return
   // if(!restaurents) return null;
