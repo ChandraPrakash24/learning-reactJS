@@ -41,11 +41,11 @@ const BodyComponent = () => {
     // return (restaurents.length === 0) ? <Shimmer/> : (
     return (restaurents.length === 0) ? <MultipleShimmers/> : (
       <>
-      <div className="search-container">
-        <input type="text" className="search-input" placeholder="Search" value={searchText}
+      <div className="search-container py-3 space-x-4 mt-1">
+        <input type="text" className="search-input border border-gray-300 rounded-md p-1 ml-[45vw]" placeholder="Search" value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         />
-        <button type="button" className="search-btn" onClick={() => {
+        <button type="button" className="search-btn py-1.5 px-3 rounded-md bg-purple-200" onClick={() => {
           // filter data
           if(searchText.includes(' ') || searchText.trim().length === 0){
 

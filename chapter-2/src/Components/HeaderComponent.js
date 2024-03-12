@@ -14,12 +14,12 @@ const HeaderComponent = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
     return(
-      <div className="header-container" >
+      <div className="header-container flex p-2 justify-between items-center bg-green-100 shadow-md  rounded-md" >
         <a href="/">
-          <img src={FoodFireLogo} alt="logo-pic" />
+          <img src={FoodFireLogo} className="h-20" alt="logo-pic" />
         </a>
         <div className="nav-item">
-          <ul>
+          <ul className="flex py-5 space-x-4">
               <li><Link to="/">Home</Link></li>
               <Link to="/about"> <li>About</li> </Link>
               <Link to="/instamart"> <li>Instamart</li> </Link>
