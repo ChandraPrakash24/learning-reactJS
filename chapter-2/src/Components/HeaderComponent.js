@@ -14,7 +14,7 @@ const HeaderComponent = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
     return(
-      <div className="header-container flex p-2 justify-between items-center bg-green-100 shadow-md  rounded-md" >
+      <div className="header-container flex p-2 justify-between items-center bg-green-100 shadow-md  rounded-md sm:bg-blue-200 md:bg-yellow-200 lg:bg-red-500 xl:bg-orange-400 2xl:bg-slate-500 " >
         <a href="/">
           <img src={FoodFireLogo} className="h-20" alt="logo-pic" />
         </a>
