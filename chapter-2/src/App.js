@@ -13,16 +13,21 @@ import ProfileClass from "./Components/ProfileClass";
 // import Shimmer from "./Components/ShimmerUI";
 import MultipleShimmers from "./Components/MultipleShimmer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "../utils/appStore";
+
 
 const Instamart = lazy(() => import("./Components/Instamart"));
 
 const AppLayout = () => {
   return(
     <>
+    <Provider store={appStore} > 
       <HeaderComponent />
       <Outlet />
       {/* <BodyComponent /> */}
       <FooterComponent />
+    </Provider>
     </>
   );
 };

@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../constaints";
 import MultipleShimmer from "./MultipleShimmer";
 import useRestraunt from "../../utils/useRestraunt";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../utils/cartSlice";
 
 const RestaurentMenu = () => {
   const param = useParams();
@@ -12,6 +14,13 @@ const RestaurentMenu = () => {
   
   // custom hook
   const RestaurentMenuInfoData = useRestraunt(id);
+
+  const dispatchItem = useDispatch();
+
+  const handleAddItem = () => {
+    // dispatch an action
+    dispatchItem(addItem("pizza"));
+  };
 
 
   // console.log(parsedRestaurentInfoData);
@@ -58,6 +67,7 @@ const RestaurentMenu = () => {
               ?.avgRating
           }
         </h1>
+        <button className="m-2 p-2 bg-green-200 rounded-md border border-green-500 hover:bg-green-300" onClick={handleAddItem}>Add</button>
         <img
           height={200}
           width={200}

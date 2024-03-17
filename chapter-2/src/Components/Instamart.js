@@ -19,7 +19,7 @@ const Section = ({ title, discreption, isVisible, setIsVisible, setHide }) => {
 };
 
 const Instamart = () => {
-  const [sectionConfig, setSectionConfig] = useState("Team");
+  const [sectionConfig, setSectionConfig] = useState("None");
   
   return (
     <div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import FoodFireLogo from "../../Images/Food Fire Logo.png"
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const loggedIn = () => {
   // make api cal here for auth and get succes or failurse response
@@ -13,6 +14,8 @@ const loggedIn = () => {
 const HeaderComponent = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const cartItems = useSelector((store)=> store.cart.items); // subscribing to the store using selector
+  console.log(cartItems);
     return(
       <div className="header-container flex p-2 justify-between items-center bg-green-100 shadow-md  rounded-md sm:bg-blue-200 md:bg-yellow-200 lg:bg-red-500 xl:bg-orange-400 2xl:bg-slate-500 " >
         <a href="/">
@@ -25,7 +28,7 @@ const HeaderComponent = () => {
               <Link to="/instamart"> <li>Instamart</li> </Link>
               {/* <li><Link to="/about">About</Link></li> */}
               <Link to="/contact"> <li>Contact</li> </Link>
-              <li><i className="fa-solid fa-cart-shopping"></i></li>
+              <li><i className="fa-solid fa-cart-shopping"></i> {cartItems.length} items</li>
               {
                 isLoggedIn ? <button onClick={()=> setIsLoggedIn(false)}>Logout</button> : <button onClick={()=> setIsLoggedIn(true)} >Login</button>
               }
