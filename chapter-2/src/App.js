@@ -12,6 +12,7 @@ import ProfileClass from "./Components/ProfileClass";
 // import Instamart from "./Components/Instamart";
 // import Shimmer from "./Components/ShimmerUI";
 import MultipleShimmers from "./Components/MultipleShimmer";
+import Cart from "./Components/Cart";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "../utils/appStore";
@@ -67,6 +68,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: <Suspense fallback={<MultipleShimmers />}><Instamart/></Suspense>
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
     ]
   }

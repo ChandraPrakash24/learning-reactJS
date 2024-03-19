@@ -17,9 +17,9 @@ const RestaurentMenu = () => {
 
   const dispatchItem = useDispatch();
 
-  const handleAddItem = () => {
+  const handleAddItem = (item) => {
     // dispatch an action
-    dispatchItem(addItem("pizza"));
+    dispatchItem(addItem(item));
   };
 
 
@@ -67,7 +67,7 @@ const RestaurentMenu = () => {
               ?.avgRating
           }
         </h1>
-        <button className="m-2 p-2 bg-green-200 rounded-md border border-green-500 hover:bg-green-300" onClick={handleAddItem}>Add</button>
+        <button className="m-2 p-2 bg-green-200 rounded-md border border-green-500 hover:bg-green-300" onClick={() => handleAddItem(RestaurentMenuInfoData?.data?.cards[0]?.card?.card?.info?.name)}>Add</button>
         <img
           height={200}
           width={200}
