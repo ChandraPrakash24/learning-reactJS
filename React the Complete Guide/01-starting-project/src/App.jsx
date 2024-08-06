@@ -1,45 +1,22 @@
-import reactImg from "./assets/react-core-concepts.png";
+import { useState } from "react";
+
 import { CORE_CONCEPTS } from "./data.js";
-
-const reactDescriptions = ["Fundamental", "Crucial", "Core"];
-
-function genRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>
-        {reactDescriptions[genRandomInt(2)]} React concepts you will need for
-        almost any app you are going to build!
-      </p>
-    </header>
-  );
-}
-
-function CoreConcept(prop) {
-  return (
-    <li>
-      <img src={prop.image} alt={prop.title} />
-      <h3>
-        {prop.title}
-      </h3>
-      <p>
-        {prop.description}
-      </p>
-    </li>
-  );
-}
+import Header from "./components/Header/Header.jsx";
+import CoreConcept from "./components/CoreConcept.jsx";
+import TabButton from "./components/TabButton.jsx";
 
 function App() {
-  // function ok() {
-  //   alert(CORE_CONCEPTS[0].title);
-  //   alert(typeof CORE_CONCEPTS[0].image);
-  // }
-  // ok();
+  const [selectedTopic, setSelectedTopic] = useState("please click any of the above btn");
+  
+  // let text = "please click any of the above btn";
+  function onSelect(btnSelected) {
+    setSelectedTopic(btnSelected); // scheduling update (setSelectedTopic is asynchronous in nature) (React batches state updates and processes them at a later time to optimize performance.)
+    console.log(selectedTopic);
+  }
+  console.log(selectedTopic); // imidately
+  
+  // console.log('app rendered');
+
   return (
     <div>
       <Header />
@@ -61,6 +38,18 @@ function App() {
               description={CORE_CONCEPTS[3].description}
             />
           </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton onSelect={() => onSelect("components")}>
+              Components
+            </TabButton>
+            <TabButton onSelect={() => onSelect("jsx")}>JSX</TabButton>
+            <TabButton onSelect={() => onSelect("props")}>Props</TabButton>
+            <TabButton onSelect={() => onSelect("state")}>State</TabButton>
+          </menu>
+          {selectedTopic}
         </section>
       </main>
     </div>
