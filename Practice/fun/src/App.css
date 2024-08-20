@@ -1,0 +1,33 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+/* Toggle.css */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.toggle-container input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.toggle-label {
+  margin: 0;
+}
+/* Footer.css */
+.footer-container {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ccc;
+}
+
+.footer-text {
+  margin: 0;
+}

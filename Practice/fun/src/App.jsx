@@ -1,49 +1,46 @@
-import "./App.css"; // Import CSS for styling
 import React, { useState } from "react";
+import "./App.css";
 
-function SearchForm({ searchText, setSearchText }) {
-  const [item, setItem] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(e.target.value);
-
-    setSearchText(item);
-    setItem("");
-  }
-
+const Footer = () => {
   return (
-    <form action="submit" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={item}
-        onChange={(e) => {
-          setItem(e.target.value);
-        }}
-      />
-      <button type="submit" value={item} onClick={handleSubmit}>
-        Search
-      </button>
-    </form>
+    <footer className="footer-container">
+      <p className="footer-text">Footer is selected</p>
+    </footer>
   );
-}
+};
 
-function SearchResult({ searchText }) {
-  return <p>You have Searched for: {searchText}</p>;
-}
+const Toggle = () => {
+  const [isToggled, setIsToggled] = useState(false);
 
-const App = () => {
-  const [searchText, setSearchText] = useState("");
+  const handleToggleChange = () => {
+    setIsToggled((prevState) => !prevState);
+  };
 
   return (
     <>
-      <header>
-        Fruits
-        <SearchForm searchText={searchText} setSearchText={setSearchText} />
-      </header>
-      <main>
-        <SearchResult searchText={searchText} />
-      </main>
+      <div className="toggle-container">
+        <input
+          type="checkbox"
+          id="toggle"
+          checked={isToggled}
+          onChange={handleToggleChange}
+          aria-labelledby="toggleLabel"
+        />
+        <label id="toggleLabel" htmlFor="toggle" className="toggle-label">
+          Toggle
+        </label>
+      </div>
+      {isToggled && <Footer />}
+      {isToggled && <Footer />}
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <>
+      <h2>Sample App</h2>
+      <Toggle />
     </>
   );
 };
