@@ -1,66 +1,51 @@
+import "./App.css"; // Import CSS for styling
 import React, { useState } from "react";
-import "./App.css";
 
-const GradientDisplay = () => {
-  const [colorArr, setColorArr] = useState([
-    "#FF0000",
-    "#00FF00",
-    "#FFC0CB",
-    "#FFC0CB",
-    "#FFC0CB",
-  ]);
+function SearchForm({ searchText, setSearchText }) {
+  const [item, setItem] = useState("");
 
-  const [visible, setVisible] = useState(2);
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e.target.value);
 
-  function handleRemoveColor() {
-    if (visible <= 2) return;
-
-    setVisible(visible - 1);
+    setSearchText(item);
+    setItem("");
   }
-
-  function handleAddColor() {
-    if (visible >= 5) return;
-
-    setVisible(visible + 1);
-  }
-
-  const gradientStyle = {
-    background: `linear-gradient(to right, ${colorArr
-      .slice(0, visible)
-      .join(", ")})`,
-  };
 
   return (
-    <div>
-      <div>
-        <button onClick={handleRemoveColor}>Remove Color</button>{" "}
-        <button onClick={handleAddColor}>Add Color</button>
-      </div>
+    <form action="submit" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={item}
+        onChange={(e) => {
+          setItem(e.target.value);
+        }}
+      />
+      <button type="submit" value={item} onClick={handleSubmit}>
+        Search
+      </button>
+    </form>
+  );
+}
 
-      {/* Gradient Display Window */}
-      <div className="grad" style={gradientStyle}>
-        {/* This is the gradient display area */}
-      </div>
+function SearchResult({ searchText }) {
+  return <p>You have Searched for: {searchText}</p>;
+}
 
-      {/* Color Options */}
-      <div>
-        {colorArr.slice(0, visible).map((_, index) => (
-          <div key={index}>
-            <label>Color {index + 1}: </label>
-            <input
-              type="color"
-              value={colorArr[index]}
-              onChange={(e) => {
-                const nextCol = [...colorArr];
-                nextCol[index] = e.target.value;
-                setColorArr(nextCol);
-              }}
-            />{" "}
-          </div>
-        ))}
-      </div>
-    </div>
+const App = () => {
+  const [searchText, setSearchText] = useState("");
+
+  return (
+    <>
+      <header>
+        Fruits
+        <SearchForm searchText={searchText} setSearchText={setSearchText} />
+      </header>
+      <main>
+        <SearchResult searchText={searchText} />
+      </main>
+    </>
   );
 };
 
-export default GradientDisplay;
+export default App;
