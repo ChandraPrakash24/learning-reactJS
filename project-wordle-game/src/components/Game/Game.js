@@ -12,6 +12,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = useState([]);
+  const [status, setStatus] = useState("running");
 
   return (
     <>
