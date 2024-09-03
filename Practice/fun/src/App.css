@@ -1,56 +1,83 @@
-/* General styles for the whole app */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+/* App.css */
 
-/* Styles for the container */
-.container {
+/* Style for the logo */
+h1 {
   text-align: center;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #4caf50; /* Change to your preferred color */
+  font-family: "Arial", sans-serif;
+  margin-top: 20px;
 }
 
-/* Style for Slot component */
-.slot {
+/* Style for the form */
+form {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin: 10px 0;
+  margin: 20px;
 }
 
-.slot button {
-  background-color: #007bff;
+form span {
+  margin-right: 10px;
+}
+
+form select,
+form input[type="text"],
+form button {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+form select {
+  width: 120px;
+}
+
+form button {
+  background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  margin: 0 10px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.slot button:hover {
-  background-color: #0056b3;
+form button:hover {
+  background-color: #45a049;
 }
 
-.slot span {
-  font-size: 18px;
-  margin: 0 10px;
+/* Style for the packing list */
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  width: 500px;
 }
 
-/* Style for Display component */
-.display p {
-  font-size: 18px;
-  margin: 20px 0;
-  color: #555;
+li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Style for the stats */
+footer {
+  text-align: center;
+  font-size: 100px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  margin-top: 60vh; /* Pushes the footer to the bottom */
+  background-color: #f1f1f1; /* Optional: background color for the footer */
+}
+
+footer p {
+  font-size: 20px;
+  font-weight: bold;
 }

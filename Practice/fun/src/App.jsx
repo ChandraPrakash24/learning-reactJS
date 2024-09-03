@@ -1,80 +1,93 @@
 import "./App.css";
 import React, { useState } from "react";
 
-function Slot({ count, text, setStep, setCount, step }) {
-  function handleIncriment() {
-    text === "Step"
-      ? setStep((prevStep) => prevStep + 1)
-      : setCount((prevCount) => prevCount + step);
-  }
-  function handleDecrement() {
-    text === "Step"
-      ? setStep((prevStep) => prevStep - 1)
-      : setCount((prevCount) => prevCount - step);
+const initalItem = [
+  { id: 1, descreption: "Passport", quantitiy: 2, packed: false },
+  { id: 2, descreption: "Charger", quantitiy: 1, packed: false },
+];
+
+function Logo() {
+  return <h1>Far Away</h1>;
+}
+
+function Form({ setItemData }) {
+  const [descreption, setDescreption] = useState("");
+  const [quantity, setQuantity] = useState(1);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!descreption.trim()) return;
+
+    setItemData((prevItem) => [
+      ...prevItem,
+      { id: Math.random(), descreption, quantity, packed: false },
+    ]);
+
+    setDescreption("");
+    setQuantity(1);
   }
 
   return (
     <>
-      <button onClick={handleDecrement}>-</button>
-      <span>
-        {text}: {text === "Step" ? step : count}{" "}
-      </span>
-      <button onClick={handleIncriment}>+</button>
+      <form onSubmit={handleSubmit}>
+        <span>What do you need: </span>
+        <select value={quantity} onChange={(e) => setQuantity(+e.target.value)}>
+          {Array.from({ length: 20 }, (_, i) => i + 1).map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="text"
+          placeholder="Item...."
+          value={descreption}
+          onChange={(e) => setDescreption(e.target.value)}
+        />
+        <button type="submit">Add</button>
+      </form>
     </>
   );
 }
 
-function Display({ days }) {
-  function getFutureDateString(dayCount) {
-    // Get today's date
-    const today = new Date();
-
-    // Calculate the future date
-    const futureDate = new Date(today);
-    futureDate.setDate(today.getDate() + dayCount);
-
-    // Define options for date formatting
-    const options = {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    };
-    const futureDateString = futureDate.toLocaleDateString("en-US", options);
-
-    // Format the output string
-    return `${dayCount} days from today is ${futureDateString}`;
-  }
-
+function PackingList({ itemData }) {
   return (
-    <p>
-      {/* {count} days from Today is {} */}
-      {getFutureDateString(days)}
-    </p>
+    <ul>
+      {itemData.map((item) => (
+        <Item key={item.id} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+function Item({ item }) {
+  return (
+    <li>
+      <input type="checkbox" />
+      <span>{item.descreption}</span>
+      <span>{item.packed ? "✔️" : "❌"}</span>
+    </li>
+  );
+}
+
+function Stats() {
+  return (
+    <footer>
+      <p>you have X item on youre list and you have packed x% </p>
+    </footer>
   );
 }
 
 function App() {
-  const [step, setStep] = useState(5);
-  const [count, setCount] = useState(5);
+  const [itemData, setItemData] = useState(initalItem);
 
   return (
     <>
-      <Slot
-        step={step}
-        count={count}
-        text={"Step"}
-        setStep={setStep}
-        setCount={setCount}
-      />
-      <Slot
-        step={step}
-        count={count}
-        text={"Count"}
-        setCount={setCount}
-        setStep={setStep}
-      />
-      <Display days={count} />
+      <Logo />
+      <Form setItemData={setItemData} />
+      <PackingList itemData={itemData} />
+      <Stats />
     </>
   );
 }
